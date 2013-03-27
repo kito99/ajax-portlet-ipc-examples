@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:aui="http://liferay.com/faces/aui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<h:head>
+		<h:outputStylesheet library="example" name="portlet.css" />
+		<h:outputScript library="primefaces" name="primefaces.js"/>
+		<h:outputScript library="primefaces" name="push/push.js"/>
+	</h:head>
+	<h:body>
+		<h:form id="form">
+			<h:outputText id="counterValue" value="#{counterViewer.value}"
+				styleClass="counter-viewer" />
+			<h:inputHidden id="hiddenCountValue" value="#{counterViewer.value}" />
+		</h:form>
+		<h:outputScript>
+			function handleMessage(data) {
+				document.getElementById("#{view.getClientId(facesContext)}:form:counterValue").innerHTML = data;
+				document.getElementById("#{view.getClientId(facesContext)}:form:hiddenCountValue").value = data;
+			};			
+			channelViewerSocket = new PrimeFaces.widget.Socket({
+				url:"/primefaces-ipc-counter/primepush#{counterViewer.channel}",
+				autoConnect:true,
+				transport:"websocket",
+				fallbackTransport:"long-polling",
+				onMessage:handleMessage,
+				behaviors: {
+							message: function(a) {
+							   		PrimeFaces.ab({
+							   						source:"#{view.getClientId(facesContext)}:form",
+							   						event:"message",
+							   						process:"#{view.getClientId(facesContext)}:form:hiddenCountValue"
+							   					  },
+							   					  arguments[1])}
+							}   				
+				});
+		</h:outputScript>
+	</h:body>
+</f:view>
+
+
