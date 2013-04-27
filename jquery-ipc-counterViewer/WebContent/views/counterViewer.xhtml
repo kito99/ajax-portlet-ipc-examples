@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:aui="http://liferay.com/faces/aui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<h:head>
+		<h:outputStylesheet library="example" name="portlet.css" />
+		<h:outputScript library="example" name="jquery-1.8.2.js" target="head" />
+	</h:head>
+	<h:body styleClass="jsf2-portlet ltr">
+		<h:outputText id="counterViewer" value="#{counterViewer.value}"
+			styleClass="counter-viewer" />
+		<h:form id="form">
+			<h:outputScript>
+				jQuery(document).ready(function() {
+					jQuery(document).on("count", function(event, count) {
+						document.getElementById("#{view.getClientId(facesContext)}:counterViewer").innerText = count;	
+						var hiddenCountValue = document.getElementById("#{view.getClientId(facesContext)}:form:hiddenCountValue");
+						hiddenCountValue.value = count;
+						jsf.ajax.request(hiddenCountValue, 'change');
+				});});
+  			</h:outputScript>
+			<h:inputHidden id="hiddenCountValue" value="#{counterViewer.value}"/>
+		</h:form>
+	</h:body>
+</f:view>
+
+

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:aui="http://liferay.com/faces/aui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<h:head>
+		<h:outputStylesheet library="example" name="portlet.css" />
+		<h:outputScript library="example" name="jquery-1.8.2.js" target="head"/>
+	</h:head>
+	<h:body styleClass="jsf2-portlet ltr">
+		<h:outputScript>
+		function sendCount(data) {
+			if (data.status == "success") {
+				var value = document.getElementById("#{view.getClientId(facesContext)}:form:hiddenCountValue").value;
+				jQuery(document).trigger("count", value);
+			}
+		}
+		</h:outputScript>
+		<h:form id="form">
+			<h:commandButton id="count" actionListener="#{counter.increment}"
+				value="Count">
+				<f:ajax render="hiddenCountValue" onevent="sendCount" />
+			</h:commandButton>
+			<h:inputHidden id="hiddenCountValue" value="#{counter.value}" />
+		</h:form>
+	</h:body>
+</f:view>
+

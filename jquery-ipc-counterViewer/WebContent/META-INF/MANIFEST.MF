@@ -1,0 +1,10 @@
+Manifest-Version: 1.0
+Implementation-Vendor: Liferay, Inc.
+Implementation-Title: JSF2 Portlet
+Implementation-Version: 3.1.0-ga1 (Galatia / Aug 21, 2012 AD)
+Implementation-Vendor-Id: com.liferay
+Build-Jdk: 1.6.0_33
+Built-By: Release Manager
+Created-By: Apache Maven
+Archiver-Version: Plexus Archiver
+

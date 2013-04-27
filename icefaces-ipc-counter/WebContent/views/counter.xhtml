@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<f:view xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:aui="http://liferay.com/faces/aui"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ice="http://www.icesoft.com/icefaces/component"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+	<h:head>
+		<h:outputStylesheet library="example" name="portlet.css" />
+	</h:head>
+	<h:body styleClass="jsf2-portlet ltr">
+		<ice:form id="form">
+			<ice:commandButton id="count" actionListener="#{counter.increment}"
+				value="Count">
+			</ice:commandButton>
+		</ice:form>
+	</h:body>
+</f:view>
+
