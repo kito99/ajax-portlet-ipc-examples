@@ -12,11 +12,8 @@ This code is released under the Apache Software License.
 
 Enjoy!
 
-Kito D. Mann
-
-@kito99
-
-Principal Consultant, Virtua (http://www.virtua.com)
-
+Kito D. Mann\\
+@kito99\\
+Principal Consultant, Virtua (http://www.virtua.com)\\
 Editor-in-Chief, http://www.jsfcentral.com
 
